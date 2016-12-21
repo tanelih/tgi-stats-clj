@@ -1,0 +1,10 @@
+
+*.log
+.nrepl-port
+
+.lein-env
+.lein-repl-history
+
+target
+resources/public/js
+resources/public/css
