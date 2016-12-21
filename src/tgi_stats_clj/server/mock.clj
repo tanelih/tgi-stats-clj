@@ -1,4 +1,5 @@
 (ns tgi-stats-clj.server.mock
+  "Functions to generate mock data for the client."
   (:require [clj-uuid        :as uuid]
             [clj-time.core   :as time]
             [clj-time.coerce :as coerce]))
@@ -10,7 +11,7 @@
         minutes (rand-int 60)]
     (-> (time/plus
           (time/date-time year)
-          (time/weeks week)
+          (time/weeks (- week 1))
           (time/hours hours)
           (time/minutes minutes))
         (coerce/to-long)

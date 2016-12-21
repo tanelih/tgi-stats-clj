@@ -1,12 +1,13 @@
 (ns tgi-stats-clj.server.core
+  "Entry point for the server side application."
   (:gen-class)
-  (:require [environ.core :refer [env]]
-            [compojure.core :refer [defroutes context GET]]
-            [org.httpkit.server :refer [run-server]]
-            [ring.middleware.json :refer [wrap-json-response]]
-            [ring.middleware.resource :refer [wrap-resource]]
-            [ring.middleware.file-info :refer [wrap-file-info]]
-            [tgi-stats-clj.server.handlers :as handlers]))
+  (:require [environ.core                  :refer [env]]
+            [compojure.core                :refer [defroutes context GET]]
+            [org.httpkit.server            :refer [run-server]]
+            [ring.middleware.json          :refer [wrap-json-response]]
+            [ring.middleware.resource      :refer [wrap-resource]]
+            [ring.middleware.file-info     :refer [wrap-file-info]]
+            [tgi-stats-clj.server.handlers :as    handlers]))
 
 (defroutes route-map
   (context "/api" []

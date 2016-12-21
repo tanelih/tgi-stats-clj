@@ -1,4 +1,5 @@
 (ns tgi-stats-clj.server.handlers
+  "Request handlers for the application."
   (:require [environ.core              :refer [env]]
             [ring.util.response        :refer [response resource-response]]
             [tgi-stats-clj.utils       :refer [parse-int]]

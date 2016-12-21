@@ -4,5 +4,5 @@
 
 (enable-console-print!)
 
-(defn run [] (println "Run!"))
+(defn ^:export run  [] (println "Run!"))
 (defn on-fig-reload [] (println "Reload!"))
