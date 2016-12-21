@@ -7,6 +7,7 @@
                  [compojure "1.4.0"]
                  [ring/ring-core "1.4.0"]
                  [ring/ring-json "0.4.0"]
+                 [metosin/ring-http-response "0.8.0"]
                  [clj-time "0.8.0"]
                  [danlentz/clj-uuid "0.1.6"]
                  [cljs-http "0.1.42"]

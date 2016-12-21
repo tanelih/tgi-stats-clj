@@ -7,12 +7,17 @@
             [ring.middleware.json          :refer [wrap-json-response]]
             [ring.middleware.resource      :refer [wrap-resource]]
             [ring.middleware.file-info     :refer [wrap-file-info]]
-            [tgi-stats-clj.server.handlers :as    handlers]))
+            [tgi-stats-clj.utils           :refer [parse-int]]
+            [tgi-stats-clj.server.handlers :refer [render-app get-matches]]))
+
+(def port
+  (let [port-num (parse-int (env :port))]
+    (if (= port-num nil) 8000 port-num)))
 
 (defroutes route-map
   (context "/api" []
-    (GET "/matches/:year/:week" [year week] (fn [req] (handlers/get-matches year week))))
-  (GET "*" [] (fn [req] (handlers/render-app))))
+    (GET "/matches/:year/:week" [year week] (fn [req] (get-matches year week))))
+  (GET "*" [] (fn [req] (render-app))))
 
 (def application
   (->
@@ -21,4 +26,4 @@
     (wrap-resource "public")
     (wrap-file-info)))
 
-(defn -main [] (run-server application {:port 8080}))
+(defn -main [] (run-server application {:port port}))
