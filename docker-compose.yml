@@ -1,0 +1,8 @@
+database:
+  image: postgres:9.6-alpine
+  ports:
+    - 5432:5432
+  environment:
+    POSTGRES_DB:       database
+    POSTGRES_USER:     user
+    POSTGRES_PASSWORD: password
