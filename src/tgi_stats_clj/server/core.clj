@@ -8,6 +8,7 @@
             [ring.middleware.resource      :refer [wrap-resource]]
             [ring.middleware.file-info     :refer [wrap-file-info]]
             [tgi-stats-clj.utils           :refer [parse-int]]
+            [tgi-stats-clj.server.worker   :refer [work]]
             [tgi-stats-clj.server.handlers :refer [render-app get-matches]]))
 
 (def port
@@ -26,4 +27,7 @@
     (wrap-resource "public")
     (wrap-file-info)))
 
-(defn -main [] (run-server application {:port port}))
+(defn -main
+  []
+  (work)
+  (run-server application {:port port}))
