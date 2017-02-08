@@ -7,6 +7,12 @@ Clojure implementation of an older project. For fun and practice.
 ```
 docker-compose up -d; lein figwheel
 ```
+Remember to create the `.lein-env` file in EDN notation. Like so:
+```
+{:port          "foo"
+ :database-url  "bar"
+ :steam-api-key "baz"}
+```
 
 ## Database Access
 
@@ -21,7 +27,8 @@ $ docker exec -it <container> bash
 
 ```
 lein repl
+=> (require 'ragtime.repl)
 => (ragtime.repl/migrate tgi-stats-clj.server.db.schema/migration-config)
 ```
-
 Rollback can be performed with `ragtime.repl/rollback ...`.
+
