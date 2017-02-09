@@ -17,7 +17,10 @@
 
 (defroutes route-map
   (context "/api" []
-    (GET "/matches/:year/:week" [year week] (fn [req] (get-matches year week))))
+    (GET "/matches/:year/:week"
+      [year week]
+      (fn [req]
+        (get-matches year week))))
   (GET "*" [] (fn [req] (render-app))))
 
 (def application

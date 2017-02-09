@@ -28,7 +28,7 @@ $ docker exec -it <container> bash
 ```
 lein repl
 => (require 'ragtime.repl)
-=> (ragtime.repl/migrate tgi-stats-clj.server.db.schema/migration-config)
+=> (ragtime.repl/migrate tgi-stats-clj.server.db.config/migration)
 ```
 Rollback can be performed with `ragtime.repl/rollback ...`.
 
