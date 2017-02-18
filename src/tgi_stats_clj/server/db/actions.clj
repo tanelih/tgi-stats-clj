@@ -2,12 +2,16 @@
   (:require [yesql.core                     :as sql]
             [tgi-stats-clj.server.db.config :as config]))
 
-(sql/defquery get-matches-by-week
-  "queries/get-matches-by-week.sql"
-  {:connection config/db})
+(def options {:connection config/db})
+
+(sql/defquery q-upsert-user!   "queries/upsert-user.sql"    options)
+(sql/defquery q-get-match-data "queries/get-match-data.sql" options)
+
+(defn upsert-user!
+  [params]
+  (q-upsert-user! params))
 
 (defn get-match-data
-  "Get matches starting from the date set by :year and :week."
-  [year week]
-  (get-matches-by-week {:year year :week week}))
+  [params]
+  (q-get-match-data params))
 

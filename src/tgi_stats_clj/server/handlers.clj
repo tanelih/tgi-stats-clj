@@ -15,12 +15,11 @@
   (resource-response "index.html" {:root "public"}))
 
 (defn get-matches
-  "Get the matches for the given :year and the given :week. Performs several
-   requests against the Steam API in the background, so this might need some
-   optimizing in the future."
+  "Get the matches for the given :year and the given :week."
   [year-str week-str]
   (let [year (parse-int year-str)
         week (parse-int week-str)]
     (if (is-valid-date year week)
-      (ok (get-match-data year week))
+      (ok (get-match-data {:year year :week week}))
       (bad-request (status 400)))))
+

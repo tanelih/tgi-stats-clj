@@ -18,7 +18,8 @@
                  [cljs-http "0.1.42"]
                  [reagent "0.6.0"]
                  [re-frame "0.9.1"]
-                 [secretary "1.2.3"]]
+                 [secretary "1.2.3"]
+                 [org.clojure/tools.logging "0.3.1"]]
 
   :plugins [[lein-ring "0.10.0"]
             [lein-cljsbuild "1.1.5"]
