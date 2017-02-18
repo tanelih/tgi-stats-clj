@@ -19,6 +19,7 @@
                  [reagent "0.6.0"]
                  [re-frame "0.9.1"]
                  [secretary "1.2.3"]
+                 [throttler "1.0.0"]
                  [org.clojure/tools.logging "0.3.1"]]
 
   :plugins [[lein-ring "0.10.0"]

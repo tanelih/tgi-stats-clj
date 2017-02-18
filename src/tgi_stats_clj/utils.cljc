@@ -5,7 +5,7 @@
   [s]
   #?(:clj
       (try
-        (Integer/parseInt s)
+        (Long/parseLong s)
         (catch NumberFormatException e nil))
      :cljs
        (if (js/isNaN (js/parseInt s)) nil (js/parseInt s))))
