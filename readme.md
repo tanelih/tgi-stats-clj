@@ -31,5 +31,4 @@ lein repl
 => (require 'ragtime.repl)
 => (ragtime.repl/migrate tgi-stats-clj.server.db.config/migration)
 ```
-Rollback can be performed with `ragtime.repl/rollback ...`.
-
+Rollback can be performed with `ragtime.repl/rollback`.

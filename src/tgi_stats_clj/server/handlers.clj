@@ -22,4 +22,3 @@
     (if (is-valid-date year week)
       (ok (get-match-data {:year year :week week}))
       (bad-request (status 400)))))
-
