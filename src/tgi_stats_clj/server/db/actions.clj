@@ -14,4 +14,3 @@
 (defn get-match-data
   [params]
   (q-get-match-data params))
-

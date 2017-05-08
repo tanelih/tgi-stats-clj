@@ -11,7 +11,8 @@ Remember to create the `.lein-env` file in EDN notation. Like so:
 ```
 {:port          "foo"
  :database-url  "bar"
- :steam-api-key "baz"}
+ :steam-api-key "baz"
+ :steam-id-list "foo,bar,baz"}
 ```
 
 ## Database Access
