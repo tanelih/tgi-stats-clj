@@ -1,4 +1,5 @@
 (defproject tgi-stats-clj "0.1.0"
+  :uberjar-name     "tgi-stats-clj.jar"
   :min-lein-version "2.7.1"
 
   :dependencies [[org.clojure/clojure "1.9.0-alpha14"]
@@ -27,6 +28,8 @@
   :plugins [[lein-ring "0.10.0"]
             [lein-cljsbuild "1.1.5"]
             [lein-figwheel "0.5.8"]]
+
+  :profiles {:uberjar {:aot :all}}
 
   :prep-tasks ["compile" ["cljsbuild" "once" "production"]]
 
