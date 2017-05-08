@@ -1,4 +1,6 @@
 (defproject tgi-stats-clj "0.1.0"
+  :min-lein-version "2.7.1"
+
   :dependencies [[org.clojure/clojure "1.9.0-alpha14"]
                  [org.clojure/core.async "0.2.395"]
                  [org.clojure/clojurescript "1.9.293"]
