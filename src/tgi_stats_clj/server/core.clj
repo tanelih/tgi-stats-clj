@@ -1,5 +1,5 @@
 (ns tgi-stats-clj.server.core
-  "Entry point for the server side application."
+  "Entry point for the web application."
   (:gen-class)
   (:require [environ.core                  :refer [env]]
             [compojure.core                :refer [defroutes context GET]]
@@ -8,7 +8,6 @@
             [ring.middleware.resource      :refer [wrap-resource]]
             [ring.middleware.file-info     :refer [wrap-file-info]]
             [tgi-stats-clj.utils           :refer [parse-int]]
-            [tgi-stats-clj.server.worker   :refer [work]]
             [tgi-stats-clj.server.handlers :refer [render-app get-matches]]))
 
 (def port
@@ -32,6 +31,4 @@
 
 (defn -main
   []
-  (work)
   (run-server application {:port port}))
-

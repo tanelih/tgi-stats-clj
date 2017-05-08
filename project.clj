@@ -29,7 +29,9 @@
             [lein-cljsbuild "1.1.5"]
             [lein-figwheel "0.5.8"]]
 
-  :profiles {:uberjar {:aot :all}}
+  :profiles {:uberjar     {:aot :all}
+             :main-web    {:main tgi-stats-clj.server.core}
+             :main-worker {:main tgi-stats-clj.server.worker.core}}
 
   :prep-tasks ["compile" ["cljsbuild" "once" "production"]]
 

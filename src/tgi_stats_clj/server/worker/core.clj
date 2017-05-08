@@ -1,6 +1,7 @@
-(ns tgi-stats-clj.server.worker
+(ns tgi-stats-clj.server.worker.core
   "Contains a set of operations to fetch data from the Steam API in a tight
-   schedule."
+   schedule. Ran as an independent process."
+  (:gen-class)
   (:require [environ.core :refer [env]]
             [chime                           :as c]
             [clj-time.core                   :as t]
@@ -83,7 +84,8 @@
 (defn- do-clean-work
   "Cleanup old matches from the database."
   [time]
-  (log/info "do-clean-work"))
+  (log/info "do-clean-work")
+  (log/info "do-clean-work :: done"))
 
 (def user-work-schedule
   (p/periodic-seq (t/now) (t/seconds 10)))
@@ -94,17 +96,12 @@
 (def clean-work-schedule
   (p/periodic-seq (t/now) (t/seconds 20)))
 
-(defn work
-  "Starts the schedule and the scheduled jobs. Returns a function that can be
-   invoked to cancel the scheduled jobs."
+(defn -main
   []
   (do-user-work (t/now))
   (do-clean-work (t/now))
-  (let [cancel-user-worker  (c/chime-at user-work-schedule  do-user-work)
-        cancel-match-worker (c/chime-at match-work-schedule do-match-work)
-        cancel-clean-worker (c/chime-at clean-work-schedule do-clean-work)]
-    (fn []
-      (cancel-user-worker)
-      (cancel-match-worker)
-      (cancel-clean-worker))))
+  (c/chime-at user-work-schedule  do-user-work)
+  (c/chime-at match-work-schedule do-match-work)
+  (c/chime-at clean-work-schedule do-clean-work)
+  @(promise))
 
