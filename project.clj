@@ -29,13 +29,13 @@
             [lein-cljsbuild "1.1.5"]
             [lein-figwheel "0.5.8"]]
 
-  :profiles {:uberjar     {:aot :all}
-             :main-web    {:main tgi-stats-clj.server.core}
-             :main-worker {:main tgi-stats-clj.server.worker.core}}
+  :profiles {:dev {:source-paths ["development"]
+                   :dependencies [[org.clojure/tools.namespace "0.2.11"]]}
+             :uberjar {:aot :all
+                       :main tgi-stats-clj.server.core}}
 
   :prep-tasks ["compile" ["cljsbuild" "once" "production"]]
 
-  :main tgi-stats-clj.server.core
   :ring {:handler tgi-stats-clj.server.core/application}
 
   :source-paths ["src"]
