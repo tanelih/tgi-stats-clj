@@ -46,13 +46,13 @@
     (log/info token "Done.")))
 
 (def user-work-schedule
-  (p/periodic-seq (t/now) (t/seconds 10)))
+  (p/periodic-seq (t/now) (t/minutes 10)))
 
 (def match-work-schedule
-  (p/periodic-seq (t/now) (t/seconds 5)))
+  (p/periodic-seq (t/now) (t/minutes 5)))
 
 (def clean-work-schedule
-  (p/periodic-seq (t/now) (t/seconds 20)))
+  (p/periodic-seq (t/now) (t/minutes 20)))
 
 (defn -main
   []
