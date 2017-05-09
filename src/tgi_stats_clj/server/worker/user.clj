@@ -17,4 +17,4 @@
     (if (nil? (:error response))
       (db/update-users
         (map map-user (get-in response [:body :response :players])))
-      (throw (Exception. (:error response))))))
+      (throw (ex-info (:error response) response)))))

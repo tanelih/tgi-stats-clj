@@ -1,6 +1,7 @@
 (ns tgi-stats-clj.server.db.config
   "Database configuration including migrations."
-  (:require [environ.core     :refer [env]]
+  (:require [clj-time.jdbc]
+            [environ.core     :refer [env]]
             [ragtime.jdbc     :refer [sql-database load-resources]]
             [to-jdbc-uri.core :refer [to-jdbc-uri]]))
 
@@ -12,4 +13,3 @@
   "Configuration for the Ragtime DB migration utility."
   {:datastore  (sql-database {:connection-uri (to-jdbc-uri database-url)})
    :migrations (load-resources "migrations")})
-

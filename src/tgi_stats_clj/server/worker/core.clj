@@ -18,7 +18,7 @@
   [key]
   (str "[" key "][" (str (java.util.UUID/randomUUID) "]\n")))
 
-(defn- do-user-work
+(defn do-user-work
   [time]
   (let [token (create-log-token "do-user-work")]
     (log/info token "Starting...")
@@ -32,14 +32,12 @@
   (let [token (create-log-token "do-match-work")]
     (log/info token "Starting...")
     (try
-      (let [steam-ids   (clojure.string/split (env :steam-id-list) #",")
-            account-ids (map utils/to-account-id steam-ids)
-            match-ids   (match-worker/fetch-match-ids api-key account-ids)]
-        (clojure.pprint/pprint match-ids))
+      (let [match-ids (match-worker/fetch-match-ids api-key)]
+        (match-worker/fetch-match-details api-key match-ids))
       (catch Exception e (log/error token e))
       (finally (log/info token "Done.")))))
 
-(defn- do-clean-work
+(defn do-clean-work
   [time]
   (let [token (create-log-token "do-clean-work")]
     (log/info token "Starting...")

@@ -5,32 +5,35 @@
   :dependencies [[org.clojure/clojure "1.9.0-alpha14"]
                  [org.clojure/core.async "0.2.395"]
                  [org.clojure/clojurescript "1.9.293"]
+                 [org.clojure/tools.logging "0.3.1"]
+                 [org.clojure/java.jdbc "0.6.1"]
+                 [org.postgresql/postgresql "9.4-1201-jdbc41"]
                  [environ "1.1.0"]
                  [http-kit "2.1.16"]
                  [compojure "1.4.0"]
                  [ring/ring-core "1.4.0"]
                  [ring/ring-json "0.4.0"]
                  [metosin/ring-http-response "0.8.0"]
-                 [org.clojure/java.jdbc "0.6.1"]
-                 [org.postgresql/postgresql "9.4-1201-jdbc41"]
                  [yesql "0.5.3"]
                  [ragtime "0.6.0"]
                  [com.carouselapps/to-jdbc-uri "0.5.0"]
-                 [clj-time "0.8.0"]
+                 [clj-time "0.13.0"]
                  [jarohen/chime "0.2.0"]
                  [cljs-http "0.1.42"]
                  [reagent "0.6.0"]
                  [re-frame "0.9.1"]
                  [secretary "1.2.3"]
-                 [throttler "1.0.0"]
-                 [org.clojure/tools.logging "0.3.1"]]
+                 [throttler "1.0.0"]]
 
   :plugins [[lein-ring "0.10.0"]
             [lein-cljsbuild "1.1.5"]
             [lein-figwheel "0.5.8"]]
 
   :profiles {:dev {:source-paths ["development"]
-                   :dependencies [[org.clojure/tools.namespace "0.2.11"]]}
+                   :plugins [[cider/cider-nrepl "0.13.0"]]
+                   :dependencies [[org.clojure/tools.nrepl "0.2.12"]
+                                  [org.clojure/java.classpath "0.2.0"]
+                                  [org.clojure/tools.namespace "0.2.11"]]}
              :uberjar {:aot :all
                        :main tgi-stats-clj.server.core}}
 
