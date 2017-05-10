@@ -7,6 +7,7 @@
                  [org.clojure/clojurescript "1.9.293"]
                  [org.clojure/tools.logging "0.3.1"]
                  [org.clojure/java.jdbc "0.6.1"]
+                 [org.clojure/data.json "0.2.6"]
                  [org.postgresql/postgresql "9.4-1201-jdbc41"]
                  [environ "1.1.0"]
                  [http-kit "2.1.16"]

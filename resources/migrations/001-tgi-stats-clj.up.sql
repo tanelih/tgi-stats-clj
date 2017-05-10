@@ -3,7 +3,7 @@
 -- Create the basic DB structure.
 
 create table if not exists users (
-  steam_id varchar(32) primary key,
+  steam_id bigint primary key,
 
   -- properties
   avatar_url   text        not null,
@@ -13,7 +13,7 @@ create table if not exists users (
 --;;
 
 create table if not exists matches (
-  match_id varchar(32) primary key,
+  match_id bigint primary key,
 
   -- properties
   year       int       not null,
@@ -27,8 +27,8 @@ create table if not exists players (
   id serial primary key,
 
   -- relations
-  steam_id varchar(32) references users,
-  match_id varchar(32) references matches,
+  steam_id bigint references users,
+  match_id bigint references matches,
 
   -- properties
   side           varchar(8) not null,

@@ -1,7 +1,6 @@
 (ns tgi-stats-clj.utils)
 
 (defn parse-int
-  "Parse an integer from the given string."
   [s]
   #?(:clj
       (try

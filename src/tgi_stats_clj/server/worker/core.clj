@@ -1,18 +1,18 @@
 (ns tgi-stats-clj.server.worker.core
-  "Contains a set of operations to fetch data from the Steam API in a tight
-   schedule. Ran as an independent worker process."
   (:gen-class)
   (:require [environ.core :refer [env]]
             [chime                             :as c]
             [clj-time.core                     :as t]
             [clj-time.periodic                 :as p]
             [clojure.tools.logging             :as log]
+            [clojure.string                    :refer [split]]
+            [tgi-stats-clj.utils               :refer [parse-int]]
             [tgi-stats-clj.server.utils        :as utils]
             [tgi-stats-clj.server.worker.user  :as user-worker]
             [tgi-stats-clj.server.worker.match :as match-worker]))
 
 (def api-key       (env :steam-api-key))
-(def steam-id-list (env :steam-id-list))
+(def steam-id-list (map parse-int (split (env :steam-id-list) #",")))
 
 (defn- create-log-token
   [key]
@@ -24,7 +24,8 @@
     (log/info token "Starting...")
     (try
       (user-worker/fetch-users api-key steam-id-list)
-      (catch Exception e (log/error token e))
+      (catch Exception e
+        (log/error token e))
       (finally (log/info token "Done.")))))
 
 (defn do-match-work
@@ -34,7 +35,8 @@
     (try
       (let [match-ids (match-worker/fetch-match-ids api-key)]
         (match-worker/fetch-match-details api-key match-ids))
-      (catch Exception e (log/error token e))
+      (catch Exception e
+        (log/error token e))
       (finally (log/info token "Done.")))))
 
 (defn do-clean-work
