@@ -32,3 +32,17 @@ lein repl
 => (ragtime.repl/migrate tgi-stats-clj.server.db.config/migration)
 ```
 Rollback can be performed with `ragtime.repl/rollback`.
+
+## REPL in Heroku
+
+More often than not, Heroku doesn't like us running the REPL using the official
+`heroku run lein repl` way. Because memory. Instead this seems to be a bit more
+easy on the dynos:
+
+```
+heroku run lein trampoline run -m clojure.main
+```
+
+This will run a ghetto-repl that will get the job done for migrations and other
+similar stuff.
+
