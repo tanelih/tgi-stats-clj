@@ -36,11 +36,10 @@
                                   [org.clojure/java.classpath "0.2.0"]
                                   [org.clojure/tools.namespace "0.2.11"]]}
              :uberjar {:aot :all
-                       :main tgi-stats-clj.server.core}}
+                       :main tgi-stats-clj.server.core
+                       :prep-tasks ["compile" ["cljsbuild" "once" "production"]]}}
 
   :repl-options {:timeout 120000}
-
-  :prep-tasks ["compile" ["cljsbuild" "once" "production"]]
 
   :ring {:handler tgi-stats-clj.server.core/application}
 
