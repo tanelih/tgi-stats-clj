@@ -34,7 +34,9 @@
                    :plugins [[cider/cider-nrepl "0.13.0"]]
                    :dependencies [[org.clojure/tools.nrepl "0.2.12"]
                                   [org.clojure/java.classpath "0.2.0"]
-                                  [org.clojure/tools.namespace "0.2.11"]]}
+                                  [org.clojure/tools.namespace "0.2.11"]]
+                   :aliases {"migrate"  ["run" "-m" "user/migrate"]
+                             "rollback" ["run" "-m" "user/rollback"]}}
              :uberjar {:aot :all
                        :main tgi-stats-clj.server.core
                        :prep-tasks ["compile" ["cljsbuild" "once" "production"]]}}
