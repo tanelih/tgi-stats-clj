@@ -38,6 +38,8 @@
              :uberjar {:aot :all
                        :main tgi-stats-clj.server.core}}
 
+  :repl-options {:timeout 120000}
+
   :prep-tasks ["compile" ["cljsbuild" "once" "production"]]
 
   :ring {:handler tgi-stats-clj.server.core/application}
