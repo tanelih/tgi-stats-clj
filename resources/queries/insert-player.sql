@@ -23,4 +23,4 @@ insert into players (
   :stat_gpm,
   :stat_last_hits,
   :stat_denies
-)
+) on conflict (steam_id, match_id) do nothing

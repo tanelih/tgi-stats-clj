@@ -50,22 +50,26 @@
           (fetch-match-history api-key account-id (:match_id (last matches)))
           [(last matches)])))))
 
+(defn fetch-user-match-data
+  [api-key]
+  (fn [user]
+    (let [steam-id     (:steam_id user)
+          latest-match (db/get-latest-match steam-id)]
+      (filter
+        (fn [match]
+          (let [start-time (utils/to-date (:start_time match))]
+            (or
+              (nil? latest-match)
+              (clj-time.core/after? start-time (:start_time latest-match)))))
+        (fetch-match-history api-key (utils/to-account-id steam-id) nil)))))
+
 (defn fetch-match-ids
   [api-key]
-  (let [account-ids  (map (comp utils/to-account-id :steam_id) (db/get-users))
-        latest-match (db/get-latest-match)]
-    (distinct
-      (map
-        :match_id
-        (filter
-          (fn [match]
-            (let [start-time (utils/to-date (:start_time match))]
-              (or
-                (nil? latest-match)
-                (clj-time.core/after? start-time (:start_time latest-match)))))
-          (flatten
-            (map #(fetch-match-history api-key % (:match_id latest-match))
-                 account-ids)))))))
+  (distinct
+    (map
+      :match_id
+      (flatten
+        (map (fetch-user-match-data api-key) (db/get-users))))))
 
 (defn fetch-single-match-details
   [api-key match-id]

@@ -18,10 +18,6 @@
   [ex action]
   (ex-info (.getMessage ex) {:type :db :action action} ex))
 
-(defn is-new-match
-  [existing-match-ids new-match-id]
-  (not (some #(= % new-match-id) existing-match-ids)))
-
 (defn get-match-data
   [params]
   (try
@@ -67,8 +63,8 @@
       (throw (create-db-ex e :get-users)))))
 
 (defn get-latest-match
-  []
+  [steam-id]
   (try
-    (q-get-latest-match {} {:result-set-fn first})
+    (q-get-latest-match {:steam_id steam-id} {:result-set-fn first})
     (catch Exception e
       (throw (create-db-ex e :get-latest-match)))))
